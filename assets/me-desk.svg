@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs><pattern id="s" width="48" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="48" height="48" fill="#DDF2FB"/><rect width="24" height="48" fill="#C6E8F7"/></pattern></defs>
+  <rect width="1200" height="900" fill="url(#s)"/>
+  <rect x="380" y="330" width="440" height="280" rx="22" fill="#FFFBF4" stroke="#2B1A10" stroke-width="10"/>
+  <path d="M320 640 H880 L840 690 H360 Z" fill="#FFFBF4" stroke="#2B1A10" stroke-width="10" stroke-linejoin="round"/>
+  <circle cx="600" cy="470" r="34" fill="#FFCB3D" stroke="#2B1A10" stroke-width="8"/>
+  <rect x="380" y="140" width="440" height="76" rx="38" fill="#2B1A10"/>
+  <text x="600" y="191" text-anchor="middle" font-family="-apple-system, system-ui, Helvetica, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="3" fill="#8ED2F2">WORK PHOTO</text>
+  <text x="600" y="780" text-anchor="middle" font-family="-apple-system, system-ui, Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#2B1A10">4 : 3</text>
+</svg>
