@@ -252,9 +252,9 @@ section { scroll-margin-top: 88px; }
 }
 .photo {
   position: absolute;
-  left: 13%;
-  top: 3%;
-  width: 62%;
+  left: 15%;
+  top: 4%;
+  width: 64%;
   margin: 0;
   z-index: 1;
   background: var(--white);
@@ -264,8 +264,14 @@ section { scroll-margin-top: 88px; }
   box-shadow: 8px 8px 0 var(--ink);
   rotate: -4deg;
   transition: rotate .35s ease;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: block;
 }
 .photo:hover { rotate: -1deg; }
+.photo.boing { animation: boing .55s cubic-bezier(.3, 1.8, .5, 1); }
 .photo::before {
   content: "";
   position: absolute;
@@ -279,7 +285,7 @@ section { scroll-margin-top: 88px; }
   border: 2px dashed rgba(43, 26, 16, .3);
 }
 .photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 10px; border: 2px solid var(--ink); }
-.photo figcaption { font-family: var(--hand); font-weight: 700; font-size: clamp(1.25rem, 2vw, 1.55rem); line-height: 1.1; text-align: left; padding: 6px 0 9px 8px; }
+.photo .cap { display: block; font-family: var(--hand); font-weight: 700; font-size: clamp(1.25rem, 2vw, 1.55rem); line-height: 1.1; text-align: left; padding: 6px 0 9px 8px; }
 .badge-ring {
   position: absolute;
   left: -3%;
@@ -317,8 +323,8 @@ section { scroll-margin-top: 88px; }
 @keyframes boing { 0% { scale: 1; } 30% { scale: 1.12 .9; } 60% { scale: .95 1.08; } 100% { scale: 1; } }
 .bubble {
   position: absolute;
-  left: 63%;
-  top: 25%;
+  left: 58%;
+  top: 13%;
   max-width: 40%;
   z-index: 7;
   background: var(--paper);
@@ -337,7 +343,7 @@ section { scroll-margin-top: 88px; }
 .bubble::after {
   content: "";
   position: absolute;
-  right: 26px;
+  left: 20px;
   bottom: -14px;
   width: 22px; height: 22px;
   background: var(--paper);
@@ -376,6 +382,7 @@ section { scroll-margin-top: 88px; }
 .stk.cut img {
   filter: drop-shadow(3px 0 0 var(--white)) drop-shadow(-3px 0 0 var(--white)) drop-shadow(0 3px 0 var(--white)) drop-shadow(0 -3px 0 var(--white)) drop-shadow(4px 6px 0 rgba(43, 26, 16, .28));
 }
+.stk.round img { border-radius: 50%; }
 .stk.badge img {
   border-radius: 24%;
   border: 4px solid var(--white);
@@ -741,7 +748,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
   border: var(--line);
   border-radius: 28px;
   box-shadow: var(--pop);
-  padding: 96px 22px 24px;
+  padding: 72px 22px 24px;
   transition: transform .25s ease, box-shadow .25s ease, rotate .25s ease;
   min-width: 0;
 }
@@ -762,6 +769,42 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
 .tile:hover img { rotate: -6deg; scale: 1.15; }
 .tile h3 { font-family: var(--display); font-weight: 800; font-size: 1.6rem; line-height: 1.05; margin: 0 0 8px; }
 .tile p { margin: 0; font-weight: 500; }
+
+/* Work tile icons */
+.tile-ico {
+  position: absolute;
+  top: -26px;
+  right: 16px;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  border: var(--line);
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 var(--ink);
+  rotate: 8deg;
+  transition: rotate .3s cubic-bezier(.3, 1.6, .5, 1), scale .3s cubic-bezier(.3, 1.6, .5, 1);
+}
+.tile-ico svg { width: 58%; height: 58%; }
+.tile:hover .tile-ico { rotate: -8deg; scale: 1.12; }
+
+/* App panel actions + Instagram */
+.app-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 6px; }
+.app-actions .btn { margin-top: 0; }
+.ig-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; text-decoration: none; color: inherit; }
+.ig-link svg { width: 22px; height: 22px; flex: none; }
+.ig-link:hover span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* Contact stamp */
+.stamp-big { position: relative; width: 100%; aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: var(--sun); border: var(--line); box-shadow: 8px 8px 0 var(--ink); rotate: -8deg; }
+.stamp-big .spin { position: absolute; inset: 4%; width: 92%; height: 92%; animation: spin 20s linear infinite; }
+.stamp-big text { font-family: var(--display); font-weight: 800; font-size: 17px; letter-spacing: 1px; fill: var(--ink); }
+.stamp-big .env { width: 40%; height: auto; color: var(--ink); animation: bob 3s ease-in-out infinite; }
+.also { margin: 22px 0 0 !important; font-size: 1rem !important; font-weight: 700 !important; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.also a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.also a svg { width: 20px; height: 20px; }
+.also a:hover span { text-decoration: underline; text-underline-offset: 3px; }
 
 /* Contact */
 .contact {
@@ -800,14 +843,15 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
   font-weight: 800;
   max-width: 100%;
 }
-.email span.addr { overflow-wrap: anywhere; }
+.email .addr { overflow-wrap: anywhere; text-decoration: none; }
+.email .addr:hover { text-decoration: underline; text-underline-offset: 3px; }
 .copy { font: 800 .9rem var(--body); background: var(--sun); color: var(--ink); border: 2px solid var(--ink); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
 .copy .done { display: none; }
 .copy.is-done .idle { display: none; }
 .copy.is-done .done { display: inline; }
 .contact-art { position: relative; justify-self: center; width: min(100%, 320px); }
 .contact-art img { width: 100%; animation: bob 3.2s ease-in-out infinite; filter: drop-shadow(4px 0 0 var(--white)) drop-shadow(-4px 0 0 var(--white)) drop-shadow(0 4px 0 var(--white)) drop-shadow(0 -4px 0 var(--white)) drop-shadow(6px 8px 0 rgba(43, 26, 16, .35)); }
-.plane { position: absolute; top: 18%; left: 0; width: clamp(90px, 10vw, 130px); z-index: 1; animation: fly 14s linear infinite; pointer-events: none; filter: drop-shadow(3px 0 0 var(--white)) drop-shadow(-3px 0 0 var(--white)) drop-shadow(0 3px 0 var(--white)) drop-shadow(0 -3px 0 var(--white)); }
+.plane { position: absolute; top: 18%; left: 0; width: clamp(64px, 7vw, 96px); aspect-ratio: 1; height: auto; z-index: 1; animation: fly 14s linear infinite; pointer-events: none; filter: drop-shadow(3px 0 0 var(--white)) drop-shadow(-3px 0 0 var(--white)) drop-shadow(0 3px 0 var(--white)) drop-shadow(0 -3px 0 var(--white)); }
 @keyframes fly {
   0% { translate: -20vw 40px; rotate: -6deg; }
   25% { translate: 25vw -20px; rotate: 6deg; }
@@ -866,7 +910,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
   .tiles { grid-template-columns: minmax(0, 1fr); }
   .stat { padding: 16px 16px 14px; }
   .stat p { font-size: .95rem; }
-  .bubble { left: 58%; max-width: 44%; }
+  .bubble { left: 54%; max-width: 46%; }
   .app { box-shadow: 7px 7px 0 var(--ink); }
   .phone { width: min(250px, 78%); }
   .say { -webkit-text-stroke-width: 2px; text-shadow: 5px 5px 0 var(--ink); }
@@ -912,18 +956,17 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
           <p class="hello"><span class="en">hey there! I'm Chris, a.k.a. 小仔</span><span class="zh" lang="zh-Hant">嗨！我是小仔 Chris</span></p>
           <h1>
             <span class="en">
-              <span class="w" style="--i:0">Happy</span> <span class="w" style="--i:1">little</span> <span class="w" style="--i:2">apps,</span>
-              <span class="w" style="--i:3">made</span> <span class="w" style="--i:4">by</span> <span class="w tag tag-white" style="--i:5">one human</span>
-              <span class="w" style="--i:6">&amp;</span> <span class="w tag tag-orange" style="--i:7">a beaver.</span>
+              <span class="w" style="--i:0">I</span> <span class="w" style="--i:1">make</span> <span class="w tag tag-white" style="--i:2">happy little</span>
+              <span class="w" style="--i:3">apps</span> <span class="w" style="--i:4">&amp;</span> <span class="w tag tag-orange" style="--i:5">games.</span>
             </span>
             <span class="zh" lang="zh-Hant">
-              <span class="w tag tag-white" style="--i:0">一個人</span> <span class="w" style="--i:1">＋</span> <span class="w tag tag-orange" style="--i:2">一隻河狸</span><br>
-              <span class="w" style="--i:3">做讓人開心的</span><span class="w" style="--i:4">小&nbsp;App。</span>
+              <span class="w" style="--i:0">我做</span><span class="w tag tag-white" style="--i:1">讓人開心</span><span class="w" style="--i:2">的</span><br>
+              <span class="w" style="--i:3">App&nbsp;和</span><span class="w tag tag-orange" style="--i:4">遊戲</span><span class="w" style="--i:5">。</span>
             </span>
           </h1>
           <p class="lede">
-            <span class="en">I'm an indie developer from Taiwan. I design, build and ship iPhone apps and web tools all by myself, and they share one goal: make your day a little lighter.</span>
-            <span class="zh" lang="zh-Hant">我是來自台灣的獨立開發者，一個人從企劃、設計、開發做到上架。我的 App 都有同一個目標：讓你的一天輕鬆一點。</span>
+            <span class="en">I'm an indie developer from Taiwan. I design, build and ship iPhone apps and web tools on my own, and make games with small teams. Whatever I build, the goal is the same: make your day a little lighter.</span>
+            <span class="zh" lang="zh-Hant">我是來自台灣的獨立開發者，一個人做 iPhone App 和網頁工具，也和小團隊一起做遊戲。不管做什麼，目標都一樣：讓你的一天輕鬆一點。</span>
           </p>
           <div class="ctas">
             <a class="btn btn-ink" href="#apps"><span class="en">See my apps</span><span class="zh" lang="zh-Hant">看我的作品</span>
@@ -931,29 +974,28 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
             <a class="btn" href="#work"><span class="en">Work with me</span><span class="zh" lang="zh-Hant">找我合作</span></a>
           </div>
           <p class="hint">
-            <span class="en">psst… the stickers are draggable</span><span class="zh" lang="zh-Hant">偷偷說：貼紙可以拖來拖去</span>
+            <span class="en">psst… you can drag the icons around</span><span class="zh" lang="zh-Hant">偷偷說：圖示都可以拖來拖去</span>
             <svg viewBox="0 0 64 36" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 26c14 8 34 6 50-14"/><path d="M44 10l10 1-2 10"/></svg>
           </p>
         </div>
 
         <div class="hero-art" id="stage">
-          <figure class="photo">
+          <button class="photo" id="poke" type="button" aria-label="Say hi to Chris">
             <img src="assets/me.svg" alt="Chris Su" width="800" height="1000">
-            <figcaption><span class="en">that's me!</span><span class="zh" lang="zh-Hant">這是我！</span></figcaption>
-          </figure>
+            <span class="cap"><span class="en">that's me!</span><span class="zh" lang="zh-Hant">這是我！</span></span>
+          </button>
           <div class="badge-ring" aria-hidden="true">
-            <svg viewBox="0 0 200 200"><defs><path id="ringPath" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs><text><textPath href="#ringPath" textLength="474" lengthAdjust="spacing">INDIE APP MAKER ✦ MADE IN TAIWAN ✦</textPath></text></svg>
+            <svg viewBox="0 0 200 200"><defs><path id="ringPath" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs><text><textPath href="#ringPath" textLength="474" lengthAdjust="spacing">APPS ✦ GAMES ✦ MADE IN TAIWAN ✦</textPath></text></svg>
             <b>✦</b>
           </div>
-          <button class="beaver" id="beaver" type="button" aria-label="Poke the beaver">
-            <img src="assets/beaver.webp" alt="Chris's beaver sidekick at a desk with a laptop and a coffee" width="900" height="900">
-          </button>
-          <div class="bubble" id="bubble" aria-live="polite"><span class="en">Hi! Click me.</span><span class="zh" lang="zh-Hant">嗨！點我一下。</span></div>
+          <div class="bubble" id="bubble" aria-live="polite"><span class="en">Hi! I'm Chris. Poke my photo.</span><span class="zh" lang="zh-Hant">嗨！我是小仔，戳一下照片。</span></div>
 
-          <div class="stk badge" style="--x:80%;--y:3%;--w:16%;--r:12deg;--d:22;--t:5.2s;--delay:.5s" data-go="#beavernote" title="BeaverNote"><img src="assets/beavernote.webp" alt="BeaverNote app icon" width="256" height="256"></div>
-          <div class="stk badge" style="--x:-6%;--y:36%;--w:15%;--r:-10deg;--d:-18;--t:4.6s;--delay:.65s" data-go="#famesim" title="FameSim"><img src="assets/famesim.webp" alt="FameSim app icon" width="256" height="256"></div>
-          <div class="stk badge" style="--x:2%;--y:84%;--w:13%;--r:8deg;--d:14;--t:5.8s;--delay:.8s" data-go="#beaverkit" title="BeaverKit"><img src="assets/beaverkit.webp" alt="BeaverKit app icon" width="256" height="256"></div>
-          <div class="stk cut" style="--x:-10%;--y:56%;--w:24%;--r:-6deg;--d:-12;--t:6.2s;--delay:.95s"><img src="assets/mascots/paopao-cheer.webp" alt="Paopao, the FameSim mascot, cheering" width="300" height="300"></div>
+          <div class="stk badge" style="--x:82%;--y:0%;--w:15%;--r:12deg;--d:22;--t:5.2s;--delay:.5s" data-go="#famesim" title="曬日子 FameSim"><img src="assets/famesim.webp" alt="FameSim app icon" width="256" height="256"></div>
+          <div class="stk badge" style="--x:-7%;--y:24%;--w:15%;--r:-10deg;--d:-18;--t:4.6s;--delay:.6s" data-go="#beaverkit" title="BeaverKit"><img src="assets/beaverkit.webp" alt="BeaverKit app icon" width="256" height="256"></div>
+          <div class="stk badge round" style="--x:85%;--y:38%;--w:17%;--r:6deg;--d:16;--t:5.8s;--delay:.7s" data-go="#games" title="Bear Warrior"><img src="assets/games/bw-badge.webp" alt="Bear Warrior" width="300" height="300"></div>
+          <div class="stk badge" style="--x:-5%;--y:52%;--w:14%;--r:8deg;--d:-14;--t:5.4s;--delay:.8s" data-go="#beavernote" title="BeaverNote"><img src="assets/beavernote.webp" alt="BeaverNote app icon" width="256" height="256"></div>
+          <div class="stk badge" style="--x:84%;--y:64%;--w:14%;--r:-6deg;--d:12;--t:6s;--delay:.9s" data-go="#bench" title="OnlyYou"><img src="assets/onlyyou.webp" alt="OnlyYou app icon" width="256" height="256"></div>
+          <div class="stk cut" style="--x:-9%;--y:74%;--w:21%;--r:-6deg;--d:-10;--t:6.2s;--delay:1s"><img src="assets/mascots/paopao-cheer.webp" alt="Paopao, the FameSim mascot, cheering" width="300" height="300"></div>
         </div>
       </div>
     </section>
@@ -975,9 +1017,9 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
       <div class="wrap">
         <div class="stats">
           <div class="stat" style="--r:-2deg"><span class="num" data-to="2">2</span><p><span class="en">apps live on the App Store</span><span class="zh" lang="zh-Hant">款 App 在 App Store 上架</span></p></div>
-          <div class="stat" style="--r:1.5deg"><span class="num" data-to="104">104</span><p><span class="en">beaver stickers to collect</span><span class="zh" lang="zh-Hant">張河狸貼紙等你收集</span></p></div>
-          <div class="stat" style="--r:-1deg"><span class="num" data-to="175">175</span><p><span class="en">countries &amp; regions</span><span class="zh" lang="zh-Hant">個國家與地區上架</span></p></div>
-          <div class="stat" style="--r:2deg"><span class="num" data-to="5">5</span><p><span class="en">languages my apps speak</span><span class="zh" lang="zh-Hant">種語言，App 都會說</span></p></div>
+          <div class="stat" style="--r:1.5deg"><span class="num" data-to="4">4</span><p><span class="en">team games built in Unity</span><span class="zh" lang="zh-Hant">款和團隊一起用 Unity 做的遊戲</span></p></div>
+          <div class="stat" style="--r:-1deg"><span class="num" data-to="3900" data-suffix="+">3,900+</span><p><span class="en">commits on GitHub</span><span class="zh" lang="zh-Hant">個 GitHub commit</span></p></div>
+          <div class="stat" style="--r:2deg"><span class="num" data-to="175">175</span><p><span class="en">countries &amp; regions can download my apps</span><span class="zh" lang="zh-Hant">個國家與地區下載得到我的 App</span></p></div>
         </div>
       </div>
     </section>
@@ -988,43 +1030,13 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
         <div class="head">
           <div class="head-title">
             <h2 class="h2"><span class="en">Stuff I've shipped</span><span class="zh" lang="zh-Hant">已經上線的作品</span></h2>
-            <img class="head-stk" src="assets/stickers/003.webp" alt="" width="360" height="360" loading="lazy">
           </div>
           <p><span class="en">Live on the App Store and the web. Go poke them.</span><span class="zh" lang="zh-Hant">已經在 App Store 和網頁上線，去玩玩看。</span><br><a class="dev-link" href="https://apps.apple.com/developer/su-haowei/id6789432652" target="_blank" rel="noopener"><span class="en">All my apps on the App Store →</span><span class="zh" lang="zh-Hant">App Store 上的所有作品 →</span></a></p>
         </div>
 
         <div class="apps">
-          <!-- BeaverNote -->
-          <article class="app app-bn" id="beavernote">
-            <div class="app-text">
-              <div class="app-id">
-                <img class="app-icon" src="assets/beavernote.webp" alt="" width="84" height="84" loading="lazy">
-                <span class="stamp"><span class="en">Live on the App Store</span><span class="zh" lang="zh-Hant">App Store 上架中</span></span>
-              </div>
-              <h3>BeaverNote</h3>
-              <p class="tagline"><span class="en">Today's to-dos clear overnight. The beaver stickers stay.</span><span class="zh" lang="zh-Hant">今天的待辦隔天清空，河狸貼紙會留下。</span></p>
-              <p class="desc"><span class="en">A to-do list for today only. Nothing rolls over and nothing piles up as overdue. Finish your day, collect one of 104 beaver stickers, and give duplicates to friends in person.</span><span class="zh" lang="zh-Hant">只放今天的待辦，不會延到明天，也不會堆成逾期清單。過完一天收下一張河狸貼紙（共 104 張），重複的還能當面送朋友。</span></p>
-              <ul class="chips">
-                <li>iPhone</li>
-                <li><span class="en">5 languages</span><span class="zh" lang="zh-Hant">五種語言</span></li>
-                <li><span class="en">One-time unlock</span><span class="zh" lang="zh-Hant">一次買斷</span></li>
-              </ul>
-              <a class="btn" href="https://apps.apple.com/app/id6815211201" target="_blank" rel="noopener"><span class="en">Get it on the App Store</span><span class="zh" lang="zh-Hant">到 App Store 下載</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-            </div>
-            <div class="app-visual">
-              <div class="phone" data-tilt>
-                <div class="screen">
-                  <div class="en set"><img class="on" src="assets/shots/bn-today.webp" alt="BeaverNote Today screen" width="540" height="1168" loading="lazy"><img src="assets/shots/bn-stickers.webp" alt="BeaverNote sticker collection" width="540" height="1168" loading="lazy"><img src="assets/shots/bn-detail.webp" alt="BeaverNote sticker detail" width="540" height="1168" loading="lazy"></div>
-                  <div class="zh set"><img class="on" src="assets/shots/bn-today-zh.webp" alt="BeaverNote 今天頁面" width="540" height="1168" loading="lazy"><img src="assets/shots/bn-stickers-zh.webp" alt="BeaverNote 貼紙收藏" width="540" height="1168" loading="lazy"><img src="assets/shots/bn-detail-zh.webp" alt="BeaverNote 貼紙細節" width="540" height="1168" loading="lazy"></div>
-                </div>
-              </div>
-              <img class="visual-stk" src="assets/stickers/080.webp" alt="" width="360" height="360" loading="lazy">
-            </div>
-          </article>
-
           <!-- FameSim -->
-          <article class="app app-fs flip" id="famesim">
+          <article class="app app-fs" id="famesim">
             <div class="app-text">
               <div class="app-id">
                 <img class="app-icon" src="assets/famesim.webp" alt="" width="84" height="84" loading="lazy">
@@ -1052,7 +1064,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
           </article>
 
           <!-- BeaverKit -->
-          <article class="app app-bk" id="beaverkit">
+          <article class="app app-bk flip" id="beaverkit">
             <div class="app-text">
               <div class="app-id">
                 <img class="app-icon" src="assets/beaverkit.webp" alt="" width="84" height="84" loading="lazy">
@@ -1066,8 +1078,11 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
                 <li><span class="en">Build with AI</span><span class="zh" lang="zh-Hant">AI 製作</span></li>
                 <li>Remix</li>
               </ul>
-              <a class="btn" href="https://beaverkit.io" target="_blank" rel="noopener"><span class="en">Open beaverkit.io</span><span class="zh" lang="zh-Hant">前往 beaverkit.io</span>
+              <div class="app-actions">
+                <a class="btn" href="https://beaverkit.io" target="_blank" rel="noopener"><span class="en">Open beaverkit.io</span><span class="zh" lang="zh-Hant">前往 beaverkit.io</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+                <a class="ig-link" href="https://www.instagram.com/beaverkit.io/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg><span>@beaverkit.io</span></a>
+              </div>
             </div>
             <div class="app-visual">
               <div class="browser" data-tilt>
@@ -1083,6 +1098,38 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
                 <svg viewBox="0 0 200 200"><defs><path id="bkPath" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs><text><textPath href="#bkPath" textLength="474" lengthAdjust="spacing">NO CODE NEEDED ✦ BUILD WITH AI ✦</textPath></text></svg>
                 <b>AI</b>
               </div>
+            </div>
+          </article>
+
+          <!-- BeaverNote -->
+          <article class="app app-bn" id="beavernote">
+            <div class="app-text">
+              <div class="app-id">
+                <img class="app-icon" src="assets/beavernote.webp" alt="" width="84" height="84" loading="lazy">
+                <span class="stamp"><span class="en">Live on the App Store</span><span class="zh" lang="zh-Hant">App Store 上架中</span></span>
+              </div>
+              <h3>BeaverNote</h3>
+              <p class="tagline"><span class="en">Today's to-dos clear overnight. The beaver stickers stay.</span><span class="zh" lang="zh-Hant">今天的待辦隔天清空，河狸貼紙會留下。</span></p>
+              <p class="desc"><span class="en">A to-do list for today only. Nothing rolls over and nothing piles up as overdue. Finish your day, collect one of 104 beaver stickers, and give duplicates to friends in person.</span><span class="zh" lang="zh-Hant">只放今天的待辦，不會延到明天，也不會堆成逾期清單。過完一天收下一張河狸貼紙（共 104 張），重複的還能當面送朋友。</span></p>
+              <ul class="chips">
+                <li>iPhone</li>
+                <li><span class="en">5 languages</span><span class="zh" lang="zh-Hant">五種語言</span></li>
+                <li><span class="en">One-time unlock</span><span class="zh" lang="zh-Hant">一次買斷</span></li>
+              </ul>
+              <div class="app-actions">
+                <a class="btn" href="https://apps.apple.com/app/id6815211201" target="_blank" rel="noopener"><span class="en">Get it on the App Store</span><span class="zh" lang="zh-Hant">到 App Store 下載</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+                <a class="ig-link" href="https://www.instagram.com/beavernote/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg><span>@beavernote</span></a>
+              </div>
+            </div>
+            <div class="app-visual">
+              <div class="phone" data-tilt>
+                <div class="screen">
+                  <div class="en set"><img class="on" src="assets/shots/bn-today.webp" alt="BeaverNote Today screen" width="540" height="1168" loading="lazy"><img src="assets/shots/bn-stickers.webp" alt="BeaverNote sticker collection" width="540" height="1168" loading="lazy"><img src="assets/shots/bn-detail.webp" alt="BeaverNote sticker detail" width="540" height="1168" loading="lazy"></div>
+                  <div class="zh set"><img class="on" src="assets/shots/bn-today-zh.webp" alt="BeaverNote 今天頁面" width="540" height="1168" loading="lazy"><img src="assets/shots/bn-stickers-zh.webp" alt="BeaverNote 貼紙收藏" width="540" height="1168" loading="lazy"><img src="assets/shots/bn-detail-zh.webp" alt="BeaverNote 貼紙細節" width="540" height="1168" loading="lazy"></div>
+                </div>
+              </div>
+              <img class="visual-stk" src="assets/stickers/080.webp" alt="" width="360" height="360" loading="lazy">
             </div>
           </article>
         </div>
@@ -1177,7 +1224,6 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
       <div class="wrap">
         <div class="me">
           <figure class="me-photo"><img src="assets/me-desk.svg" alt="Chris at work" width="1200" height="900" loading="lazy"></figure>
-          <img class="me-stk" src="assets/stickers/031.webp" alt="" width="360" height="360" loading="lazy">
           <span class="me-note"><span class="en">my desk, most days</span><span class="zh" lang="zh-Hant">我的日常</span></span>
         </div>
         <div class="about-text">
@@ -1225,22 +1271,22 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
         </div>
         <div class="tiles">
           <div class="tile">
-            <img src="assets/stickers/029.webp" alt="" width="360" height="360" loading="lazy">
+            <span class="tile-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 5h4M11 18h2"/></svg></span>
             <h3><span class="en">iPhone apps</span><span class="zh" lang="zh-Hant">iPhone App</span></h3>
             <p><span class="en">From sketch to App Store: SwiftUI, widgets, Live Activities, in-app purchases and review.</span><span class="zh" lang="zh-Hant">從草圖到上架：SwiftUI、桌面小工具、即時動態、App 內購買和送審。</span></p>
           </div>
           <div class="tile">
-            <img src="assets/stickers/007.webp" alt="" width="360" height="360" loading="lazy">
+            <span class="tile-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20M6 6.5h.01M9 6.5h.01"/></svg></span>
             <h3><span class="en">Web apps</span><span class="zh" lang="zh-Hant">網頁應用</span></h3>
             <p><span class="en">React front ends with real back ends, deployed and ready for users.</span><span class="zh" lang="zh-Hant">React 前端加上真正的後端，部署好就能上線。</span></p>
           </div>
           <div class="tile">
-            <img src="assets/mascots/paopao-wow.webp" alt="" width="300" height="300" loading="lazy">
+            <span class="tile-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 10.5v3.5M5.25 12.25h3.5"/><circle cx="16" cy="11" r="1"/><circle cx="18.5" cy="13.5" r="1"/></svg></span>
             <h3><span class="en">Playable prototypes</span><span class="zh" lang="zh-Hant">可玩的原型</span></h3>
             <p><span class="en">Turn an idea into something clickable or playable, fast, before you bet on it.</span><span class="zh" lang="zh-Hant">快速把點子做成能點、能玩的版本，先驗證再投入。</span></p>
           </div>
           <div class="tile">
-            <img src="assets/stickers/091.webp" alt="" width="360" height="360" loading="lazy">
+            <span class="tile-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="8" r="3"/><path d="M2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14.5 14.3c.6-.2 1.3-.3 2-.3 3 0 5.5 2.5 5.5 6"/></svg></span>
             <h3><span class="en">Indie collabs</span><span class="zh" lang="zh-Hant">創作者合作</span></h3>
             <p><span class="en">Cross-promos, interviews and side projects with fellow makers.</span><span class="zh" lang="zh-Hant">互相推廣、訪談，或和其他創作者一起做專案。</span></p>
           </div>
@@ -1250,20 +1296,32 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
 
     <!-- CONTACT -->
     <section class="contact" id="contact">
-      <img class="plane" src="assets/stickers/046.webp" alt="" width="360" height="360" loading="lazy">
+      <svg class="plane" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 30 60 6 44 58 32 38Z" fill="#FFFBF4" stroke="#2B1A10" stroke-width="3" stroke-linejoin="round"/><path d="M60 6 32 38l-3 15 9-11" fill="#E8DFD0" stroke="#2B1A10" stroke-width="3" stroke-linejoin="round"/></svg>
       <div class="wrap">
         <div>
           <h2 class="say"><span class="en">Say hi!</span><span class="zh" lang="zh-Hant">來打聲招呼！</span></h2>
-          <p><span class="en">DMs on X are the fastest way to reach me, for projects too. My code lives on GitHub.</span><span class="zh" lang="zh-Hant">最快是在 X 私訊我，談案子也可以。程式碼都在 GitHub 上。</span></p>
+          <p><span class="en">DMs on X are the fastest way to reach me. For projects, email works best.</span><span class="zh" lang="zh-Hant">最快是在 X 私訊我；談案子的話，寄 Email 最好。</span></p>
           <div class="reach">
             <a class="btn btn-ink" href="https://x.com/chris58520" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg>
               @chris58520
             </a>
             <a class="btn" href="https://github.com/chris58530" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>GitHub</a>
+            <span class="email"><a class="addr" id="email" href="mailto:chris58530@gmail.com">chris58530@gmail.com</a>
+              <button class="copy" type="button" data-copy="email"><span class="idle"><span class="en">Copy</span><span class="zh" lang="zh-Hant">複製</span></span><span class="done"><span class="en">Copied!</span><span class="zh" lang="zh-Hant">已複製！</span></span></button>
+            </span>
+          </div>
+          <p class="also"><span><span class="en">Product accounts on Instagram:</span><span class="zh" lang="zh-Hant">產品的 Instagram：</span></span>
+            <a href="https://www.instagram.com/beavernote/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg><span>@beavernote</span></a>
+            <a href="https://www.instagram.com/beaverkit.io/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg><span>@beaverkit.io</span></a>
+          </p>
+        </div>
+        <div class="contact-art" aria-hidden="true">
+          <div class="stamp-big">
+            <svg class="spin" viewBox="0 0 200 200"><defs><path id="stampPath" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text><textPath href="#stampPath" textLength="500" lengthAdjust="spacing">SAY HI ✦ LET'S BUILD SOMETHING ✦</textPath></text></svg>
+            <svg class="env" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           </div>
         </div>
-        <div class="contact-art"><img src="assets/stickers/089.webp" alt="Beaver sticker cheering" width="360" height="360" loading="lazy"></div>
       </div>
     </section>
 
@@ -1272,8 +1330,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
   <footer class="foot">
     <div class="wrap">
       <div class="foot-brand">
-        <img src="assets/stickers/048.webp" alt="" width="360" height="360" loading="lazy">
-        <span><span class="en">© 2026 Chris Su · Made with a beaver in Taiwan</span><span class="zh" lang="zh-Hant">© 2026 Chris Su · 和河狸一起在台灣製作</span></span>
+        <span><span class="en">© 2026 Chris Su · Made in Taiwan</span><span class="zh" lang="zh-Hant">© 2026 Chris Su · 台灣製作</span></span>
       </div>
       <nav aria-label="App support">
         <span><span class="en">Support &amp; privacy</span><span class="zh" lang="zh-Hant">支援與隱私權</span></span>
@@ -1281,6 +1338,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
         <a href="#famesim"><span class="en">FameSim</span><span class="zh" lang="zh-Hant">曬日子</span></a>
         <a href="#beaverkit">BeaverKit</a>
         <a href="https://github.com/chris58530" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://x.com/chris58520" target="_blank" rel="noopener">X</a>
       </nav>
     </div>
   </footer>
@@ -1355,10 +1413,10 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
 
   /* Beaver quotes + confetti */
   var lines = {
-    en: ['Ship it!', 'One more build, I promise.', 'Did you drink water today?', 'No overdue lists allowed here.', 'Psst, you can drag my friends.', 'App Review, please be nice…', 'Beavers build dams. I build apps.', 'Hi! Click me.'],
-    zh: ['上架囉！', '再一個 build 就好，真的。', '今天喝水了嗎？', '這裡不准有逾期清單。', '偷偷說，我的朋友可以拖來拖去。', 'App 審核大人請手下留情…', '河狸蓋水壩，我蓋 App。', '嗨！點我一下。']
+    en: ['Ship it!', 'One more build, I promise.', 'App Review, please be nice…', 'Did you drink water today?', 'Psst, you can drag my apps around.', 'My GitHub is greener than my plants.', "Hi! I'm Chris. Poke my photo."],
+    zh: ['上架囉！', '再一個 build 就好，真的。', 'App 審核大人請手下留情…', '今天喝水了嗎？', '偷偷說，我的 App 可以拖來拖去。', '我的 GitHub 比我的盆栽還綠。', '嗨！我是小仔，戳一下照片。']
   };
-  var beaver = document.getElementById('beaver');
+  var beaver = document.getElementById('poke');
   var bubble = document.getElementById('bubble');
   var li = 0;
   var colors = ['#FF8A2B', '#D41F84', '#8ED2F2', '#FFCB3D', '#A8DDB0', '#FFFBF4'];
@@ -1370,7 +1428,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
     beaver.classList.remove('boing'); void beaver.offsetWidth; beaver.classList.add('boing');
     if (reduce) return;
     var r = stage.getBoundingClientRect();
-    var cx = r.width * 0.78, cy = r.height * 0.72;
+    var cx = r.width * 0.47, cy = r.height * 0.42;
     for (var i = 0; i < 16; i++) {
       var p = document.createElement('span');
       p.className = 'burst';
@@ -1429,7 +1487,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
         var el = en.target, to = parseInt(el.dataset.to, 10), t0 = performance.now(), dur = 1300;
         (function step(now) {
           var k = Math.min(1, (now - t0) / dur), v = 1 - Math.pow(1 - k, 3);
-          el.textContent = Math.round(to * v);
+          el.textContent = Math.round(to * v).toLocaleString('en-US') + (el.dataset.suffix || '');
           if (k < 1) requestAnimationFrame(step);
         })(t0);
       });
