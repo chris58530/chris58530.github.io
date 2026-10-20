@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
-  <defs><pattern id="s" width="44" height="44" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="44" height="44" fill="#FFE9AE"/><rect width="22" height="44" fill="#FFDD80"/></pattern></defs>
-  <rect width="800" height="1000" fill="url(#s)"/>
-  <circle cx="400" cy="450" r="150" fill="#FFFBF4" stroke="#2B1A10" stroke-width="10"/>
-  <path d="M140 1010 C140 770 255 655 400 655 C545 655 660 770 660 1010 Z" fill="#FFFBF4" stroke="#2B1A10" stroke-width="10"/>
-  <rect x="230" y="90" width="340" height="76" rx="38" fill="#2B1A10"/>
-  <text x="400" y="141" text-anchor="middle" font-family="-apple-system, system-ui, Helvetica, Arial, sans-serif" font-size="36" font-weight="800" letter-spacing="3" fill="#FFCB3D">YOUR PHOTO</text>
-  <text x="400" y="216" text-anchor="middle" font-family="-apple-system, system-ui, Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#2B1A10">4 : 5</text>
-</svg>
