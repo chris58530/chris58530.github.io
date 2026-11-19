@@ -900,6 +900,12 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
 .ig-top img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--ink); object-fit: cover; }
 .ig-top b { display: block; font-size: .98rem; line-height: 1.1; }
 .ig-top small { font-size: .8rem; opacity: .65; font-weight: 600; }
+.ig-open { margin-left: auto; font-weight: 800; font-size: .9rem; color: var(--magenta); text-decoration: none; }
+.ig-art.is-pic { aspect-ratio: 4 / 5; }
+.ig-art.is-pic img { width: 100%; height: 100%; object-fit: cover; animation: none; }
+.follow-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.follow-row a { font-weight: 800; font-size: .9rem; text-decoration: none; border: var(--line); border-radius: 999px; padding: 6px 14px; background: var(--white); }
+.follow-row a.hot { background: var(--magenta); color: var(--white); }
 .ig-art { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; border-bottom: var(--line); overflow: hidden; background: var(--sun); }
 .ig-art img { width: 46%; animation: float 4.6s ease-in-out infinite; }
 .ig-art .lbl { position: absolute; left: 16px; bottom: 12px; font-family: var(--display); font-weight: 800; font-size: clamp(1.3rem, 3vw, 1.8rem); background: var(--white); border: var(--line); border-radius: 14px; padding: 2px 12px; rotate: -3deg; }
@@ -1092,9 +1098,10 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
             <p class="now-status" id="now-status"><span class="en">Building happy little apps</span><span class="zh" lang="zh-Hant">在做讓人開心的小 App</span></p>
             <p class="now-when" id="now-when"></p>
             <ul class="log" id="now-log"></ul>
+            <div class="follow-row"><a class="hot" href="https://www.instagram.com/chris58510/" target="_blank" rel="noopener"><span class="en">My IG</span><span class="zh" lang="zh-Hant">我的 IG</span></a><a href="https://www.instagram.com/paopao.sai/" target="_blank" rel="noopener"><span class="en">曬日子 IG</span><span class="zh" lang="zh-Hant">曬日子 IG</span></a><a href="https://www.threads.com/@paopao.sai" target="_blank" rel="noopener">Threads</a></div>
           </div>
           <article class="ig" id="now-post" aria-label="Latest post">
-            <div class="ig-top"><img src="assets/me.jpg?v=shades" alt="" width="38" height="38"><div><b>chrissu</b><small id="post-when"></small></div></div>
+            <div class="ig-top"><img src="https://saidayapp.web.app/img/icon.png" alt="" width="38" height="38"><div><b>paopao.sai</b><small id="post-when"></small></div><a class="ig-open" id="post-open" href="https://www.instagram.com/paopao.sai/" target="_blank" rel="noopener"><span class="en">View on IG ↗</span><span class="zh" lang="zh-Hant">在 IG 看 ↗</span></a></div>
             <div class="ig-art" id="post-art"></div>
             <div class="ig-body">
               <div class="ig-acts">
@@ -1108,7 +1115,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
                 <input id="say-in" maxlength="80" required>
                 <button type="submit"><span class="en">Post</span><span class="zh" lang="zh-Hant">留言</span></button>
               </form>
-              <p class="ig-note"><span class="en">The friends commenting here are the virtual characters from my app 曬日子. That's exactly what the app does. <a href="#famesim">See 曬日子</a> · <a href="https://www.instagram.com/chris58510/" target="_blank" rel="noopener">My real IG</a></span><span class="zh" lang="zh-Hant">這裡留言的朋友，是我做的 App「曬日子」裡的虛擬角色，App 裡就是這種感覺。<a href="#famesim">看看曬日子</a> · <a href="https://www.instagram.com/chris58510/" target="_blank" rel="noopener">我的 IG</a></span></p>
+              <p class="ig-note"><span class="en">Latest post from 曬日子's official IG. The commenters are the app's virtual characters, and that's exactly how the app feels. Your comment stays in your browser. <a href="#famesim">See 曬日子</a></span><span class="zh" lang="zh-Hant">曬日子官方 IG 的最新一篇。留言的是 App 裡的虛擬角色，App 裡就是這種感覺；你的留言只留在你的瀏覽器。<a href="#famesim">看看曬日子</a></span></p>
             </div>
           </article>
         </div>
@@ -1601,30 +1608,34 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
       var m = iso.slice(5).replace('-', '/').replace(/^0/, '');
       return { en: m, zh: m };
     }
+    var FEED = 'https://saidayapp.web.app';
+    function nm(c) { return lang() === 'en' && c.name_en ? c.name_en : c.name; }
     function avatar(c) {
-      return '<span class="av" style="--c:' + (c.color || 'var(--kraft)') + '">' + (c.avatar ? '<img src="' + c.avatar + '" alt="" width="30" height="30">' : esc(c.name.charAt(0))) + '</span>';
+      return '<span class="av" style="--c:' + (c.color || 'var(--kraft)') + '">' + (c.avatar ? '<img src="' + FEED + c.avatar + '" alt="" width="30" height="30">' : esc(nm(c).charAt(0))) + '</span>';
     }
     function cmtHTML(c, text) {
-      return avatar(c) + '<p style="margin:0"><b>' + esc(c.name) + '</b>' + (text != null ? esc(text) : both(c)) + '</p>';
+      return avatar(c) + '<p style="margin:0"><b>' + (c.name_en ? both({ zh: c.name, en: c.name_en }) : esc(c.name)) + '</b>' + (text != null ? esc(text) : both(c)) + '</p>';
     }
     var list = document.getElementById('post-cmts');
     function addCmt(html, cls) { var li = document.createElement('li'); li.className = 'cmt' + (cls ? ' ' + cls : ''); li.innerHTML = html; list.appendChild(li); return li; }
     function typing(c) { return addCmt(avatar(c) + '<span class="typing" aria-label="typing"><i></i><i></i><i></i></span>'); }
 
-    fetch('assets/now.json?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (data) {
+    fetch(FEED + '/feed.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (data) {
       var w = ago(data.updated);
-      document.getElementById('now-status').innerHTML = esc(data.status.emoji) + ' ' + both(data.status);
+      var me = data.chris;
+      document.getElementById('now-status').innerHTML = esc(me.status.emoji) + ' ' + both(me.status);
       document.getElementById('now-when').innerHTML = both({ en: 'Updated ' + w.en, zh: w.zh + '更新' });
-      document.getElementById('now-log').innerHTML = data.log.map(function (it) {
+      document.getElementById('now-log').innerHTML = me.log.map(function (it) {
         return '<li><time datetime="' + it.date + '">' + both(ago(it.date)) + '</time><span>' + both(it) + '</span></li>';
       }).join('');
 
-      var p = data.post, a = p.art || {};
+      var p = data.posts[0];
+      document.getElementById('post-open').href = p.url;
       document.getElementById('post-when').innerHTML = both(ago(p.date));
       var art = document.getElementById('post-art');
-      art.style.background = a.bg || 'var(--sun)';
-      art.innerHTML = (a.image ? '<img src="' + a.image + '" alt="" style="width:100%;height:100%;object-fit:cover;animation:none">' : '<img src="' + a.mascot + '" alt="">') + (a.en ? '<div class="lbl">' + both(a) + '</div>' : '');
-      document.getElementById('post-cap').innerHTML = '<b>chrissu</b>' + both(p);
+      art.classList.add('is-pic');
+      art.innerHTML = '<img src="' + FEED + p.image + '" alt="' + esc(p.alt[lang()]) + '" width="800" height="1000" loading="lazy">';
+      document.getElementById('post-cap').innerHTML = '<b>paopao.sai</b>' + both(p);
 
       var heart = document.getElementById('post-heart'), likes = document.getElementById('post-likes');
       var bots = p.comments.length;
@@ -1660,7 +1671,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
       /* Visitor comments get a reply from a virtual friend */
       var replies = {
         zh: { hi: ['嗨嗨！歡迎來玩 👋', '哇有新朋友！你好你好 ✨'], praise: ['對吧！我也這樣覺得 🥹', '你很有眼光欸 ✨', '被你誇到開心轉圈 💫'], ask: ['好問題！問小仔本人最快，聯絡方式在最下面 👇', '這題我也想知道 🤔 直接傳訊息給他吧！'], get: ['App Store 搜「曬日子」就有，我在裡面等你 🫧'], any: ['哈哈哈這句我要截圖 📸', '收到！小仔看到一定很開心', '你的留言讓今天變好了一點 ☀️', '先幫你按個讚 ❤️', '我記住你了，下次再來玩 😆'] },
-        en: { hi: ['Hiii! Welcome in 👋', 'Ooh, a new friend! Hello hello ✨'], praise: ['Right?! I think so too 🥹', 'You have great taste ✨', 'Doing a happy little spin 💫'], ask: ['Good question! Chris answers fastest. Contact info is at the bottom 👇', 'I want to know too 🤔 Send him a message!'], get: ['Search "曬日子" on the App Store. I\'ll be waiting in there 🫧'], any: ['Haha, screenshotting this 📸', 'Got it! Chris is going to love this', 'Your comment just made today a little better ☀️', 'Liked it for you ❤️', 'I\'ll remember you. Come back soon 😆'] }
+        en: { hi: ['Hiii! Welcome in 👋', 'Ooh, a new friend! Hello hello ✨'], praise: ['Right?! I think so too 🥹', 'You have great taste ✨', 'Doing a happy little spin 💫'], ask: ['Good question! Chris answers fastest. Contact info is at the bottom 👇', 'I want to know too 🤔 Send him a message!'], get: ['Search "SaiDay" on the App Store. I\'ll be waiting in there 🫧'], any: ['Haha, screenshotting this 📸', 'Got it! Chris is going to love this', 'Your comment just made today a little better ☀️', 'Liked it for you ❤️', 'I\'ll remember you. Come back soon 😆'] }
       };
       function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
       function kind(s) {
