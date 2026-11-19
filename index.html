@@ -881,6 +881,60 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
 }
 
 /* Responsive */
+/* Today */
+.today { padding-block: 0 clamp(64px, 9vw, 110px); }
+.today-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(24px, 4vw, 48px); align-items: start; }
+.now-card, .ig { background: var(--white); border: var(--line); border-radius: 26px; box-shadow: var(--pop); }
+.now-card { padding: 22px 24px 18px; rotate: -1deg; }
+.now-tag { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; background: var(--ink); color: var(--sun); border-radius: 999px; padding: 4px 12px; }
+.now-tag i { width: 9px; height: 9px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(47,191,113,.6); animation: livepulse 1.8s ease-out infinite; }
+@keyframes livepulse { to { box-shadow: 0 0 0 9px rgba(47,191,113,0); } }
+.now-status { font-family: var(--display); font-weight: 800; font-size: clamp(1.45rem, 2.6vw, 1.95rem); line-height: 1.2; margin: 14px 0 4px; text-wrap: balance; }
+.now-when { margin: 0 0 16px; font-size: .92rem; opacity: .7; font-weight: 600; }
+.log { list-style: none; margin: 0; padding: 0; border-top: 2px dashed rgba(43,26,16,.25); }
+.log li { display: grid; grid-template-columns: 4.6em minmax(0, 1fr); gap: 10px; padding: 11px 0; border-bottom: 2px dashed rgba(43,26,16,.15); font-size: .98rem; line-height: 1.45; }
+.log li:last-child { border-bottom: 0; }
+.log time { font-weight: 800; color: var(--magenta); font-size: .88rem; padding-top: 1px; }
+.ig { overflow: hidden; rotate: 1deg; }
+.ig-top { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: var(--line); }
+.ig-top img { width: 38px; height: 38px; border-radius: 50%; border: 2px solid var(--ink); object-fit: cover; }
+.ig-top b { display: block; font-size: .98rem; line-height: 1.1; }
+.ig-top small { font-size: .8rem; opacity: .65; font-weight: 600; }
+.ig-art { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; border-bottom: var(--line); overflow: hidden; background: var(--sun); }
+.ig-art img { width: 46%; animation: float 4.6s ease-in-out infinite; }
+.ig-art .lbl { position: absolute; left: 16px; bottom: 12px; font-family: var(--display); font-weight: 800; font-size: clamp(1.3rem, 3vw, 1.8rem); background: var(--white); border: var(--line); border-radius: 14px; padding: 2px 12px; rotate: -3deg; }
+.ig-art .burst { position: absolute; font-size: 2.6rem; pointer-events: none; animation: burst .9s ease-out forwards; }
+@keyframes burst { from { opacity: 1; transform: scale(.4); } 60% { opacity: 1; transform: scale(1.3); } to { opacity: 0; transform: scale(1.1) translateY(-20px); } }
+.ig-body { padding: 12px 16px 16px; }
+.ig-acts { display: flex; align-items: center; gap: 10px; }
+.heart { appearance: none; background: none; border: 0; padding: 4px; cursor: pointer; color: var(--ink); line-height: 0; border-radius: 10px; }
+.heart svg { width: 28px; height: 28px; transition: transform .2s ease; }
+.heart[aria-pressed="true"] { color: var(--magenta); }
+.heart[aria-pressed="true"] svg { fill: currentColor; transform: scale(1.12); }
+.likes { font-weight: 700; font-size: .92rem; }
+.ig-cap { margin: 6px 0 10px; white-space: pre-line; font-size: .98rem; line-height: 1.5; }
+.ig-cap b { margin-right: 6px; }
+.cmts { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.cmt { display: flex; gap: 9px; align-items: flex-start; font-size: .95rem; line-height: 1.4; animation: pop-in .35s ease-out both; }
+@keyframes pop-in { from { opacity: 0; transform: translateY(6px); } }
+.av { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--ink); background: var(--c, var(--kraft)); display: grid; place-items: center; font-weight: 800; font-size: .8rem; overflow: hidden; }
+.av img { width: 100%; height: 100%; object-fit: cover; }
+.cmt b { margin-right: 6px; }
+.cmt.mine .av { background: var(--sun); }
+.typing { display: inline-flex; gap: 3px; padding-top: 8px; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); opacity: .4; animation: dot 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes dot { 50% { opacity: 1; transform: translateY(-3px); } }
+.say-form { display: flex; gap: 8px; margin-top: 14px; }
+.say-form input { flex: 1; min-width: 0; font: inherit; font-size: 1rem; padding: 10px 14px; border: var(--line); border-radius: 999px; background: var(--paper); color: var(--ink); }
+.say-form button { font: inherit; font-weight: 800; padding: 10px 16px; border: var(--line); border-radius: 999px; background: var(--magenta); color: var(--white); cursor: pointer; }
+.say-form button:disabled { opacity: .5; cursor: default; }
+.ig-note { margin: 10px 0 0; font-size: .8rem; opacity: .6; }
+.ig-note a { font-weight: 700; }
+@media (max-width: 860px) {
+  .today-grid { grid-template-columns: minmax(0, 1fr); max-width: 560px; margin-inline: auto; }
+  .now-card, .ig { rotate: 0deg; }
+}
 @media (max-width: 1000px) {
   .nav-links { display: none; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -934,6 +988,7 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
         <span class="logo-text">ChrisSu<small>小仔</small></span>
       </a>
       <div class="nav-links">
+        <a href="#today"><span class="en">Now</span><span class="zh" lang="zh-Hant">最近</span></a>
         <a href="#apps"><span class="en">Apps</span><span class="zh" lang="zh-Hant">App</span></a>
         <a href="#games"><span class="en">Games</span><span class="zh" lang="zh-Hant">遊戲</span></a>
         <a href="#bench"><span class="en">Workbench</span><span class="zh" lang="zh-Hant">開發中</span></a>
@@ -1020,6 +1075,42 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
           <div class="stat" style="--r:1.5deg"><span class="num" data-to="4">4</span><p><span class="en">team games built in Unity</span><span class="zh" lang="zh-Hant">款和團隊一起用 Unity 做的遊戲</span></p></div>
           <div class="stat" style="--r:-1deg"><span class="num" data-to="3900" data-suffix="+">3,900+</span><p><span class="en">commits on GitHub</span><span class="zh" lang="zh-Hant">個 GitHub commit</span></p></div>
           <div class="stat" style="--r:2deg"><span class="num" data-to="175">175</span><p><span class="en">countries &amp; regions can download my apps</span><span class="zh" lang="zh-Hant">個國家與地區下載得到我的 App</span></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODAY -->
+    <section class="section today" id="today">
+      <div class="wrap">
+        <div class="head">
+          <h2 class="h2"><span class="en">What I'm up to</span><span class="zh" lang="zh-Hant">我最近在忙什麼</span></h2>
+          <p><span class="en">Updated as I build. Leave a comment on my latest post and see what happens.</span><span class="zh" lang="zh-Hant">邊做邊更新。在最新貼文底下留個言，看看會發生什麼事。</span></p>
+        </div>
+        <div class="today-grid">
+          <div class="now-card">
+            <span class="now-tag"><i aria-hidden="true"></i><span class="en">Right now</span><span class="zh" lang="zh-Hant">現在</span></span>
+            <p class="now-status" id="now-status"><span class="en">Building happy little apps</span><span class="zh" lang="zh-Hant">在做讓人開心的小 App</span></p>
+            <p class="now-when" id="now-when"></p>
+            <ul class="log" id="now-log"></ul>
+          </div>
+          <article class="ig" id="now-post" aria-label="Latest post">
+            <div class="ig-top"><img src="assets/me.jpg?v=shades" alt="" width="38" height="38"><div><b>chrissu</b><small id="post-when"></small></div></div>
+            <div class="ig-art" id="post-art"></div>
+            <div class="ig-body">
+              <div class="ig-acts">
+                <button class="heart" id="post-heart" type="button" aria-pressed="false" aria-label="Like"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.4C1.4 7.6 3.7 4 7.2 4c2 0 3.6 1.1 4.8 2.8C13.2 5.1 14.8 4 16.8 4c3.5 0 5.8 3.6 4.5 7.1-1.8 4.8-9.3 9.4-9.3 9.4Z"/></svg></button>
+                <span class="likes" id="post-likes"></span>
+              </div>
+              <p class="ig-cap" id="post-cap"></p>
+              <ul class="cmts" id="post-cmts" aria-live="polite"></ul>
+              <form class="say-form" id="say-form" autocomplete="off">
+                <label class="en" for="say-in" hidden>Add a comment</label>
+                <input id="say-in" maxlength="80" required>
+                <button type="submit"><span class="en">Post</span><span class="zh" lang="zh-Hant">留言</span></button>
+              </form>
+              <p class="ig-note"><span class="en">The friends commenting here are the virtual characters from my app 曬日子. That's exactly what the app does. <a href="#famesim">See 曬日子</a> · <a href="https://www.instagram.com/chris58510/" target="_blank" rel="noopener">My real IG</a></span><span class="zh" lang="zh-Hant">這裡留言的朋友，是我做的 App「曬日子」裡的虛擬角色，App 裡就是這種感覺。<a href="#famesim">看看曬日子</a> · <a href="https://www.instagram.com/chris58510/" target="_blank" rel="noopener">我的 IG</a></span></p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1496,6 +1587,104 @@ mark { background: linear-gradient(transparent 52%, var(--sun) 52%, var(--sun) 9
     }, { threshold: 0.6 });
     document.querySelectorAll('.num[data-to]').forEach(function (n) { io.observe(n); });
   }
+
+  /* Today: status, log and a live-feeling post */
+  (function () {
+    var lang = function () { return site.dataset.lang === 'zh' ? 'zh' : 'en'; };
+    var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+    var both = function (o) { return '<span class="en">' + esc(o.en) + '</span><span class="zh" lang="zh-Hant">' + esc(o.zh) + '</span>'; };
+    function ago(iso) {
+      var d = Math.round((new Date(new Date().toDateString()) - new Date(iso + 'T00:00:00')) / 864e5);
+      if (d <= 0) return { en: 'today', zh: '今天' };
+      if (d === 1) return { en: 'yesterday', zh: '昨天' };
+      if (d < 7) return { en: d + ' days ago', zh: d + ' 天前' };
+      var m = iso.slice(5).replace('-', '/').replace(/^0/, '');
+      return { en: m, zh: m };
+    }
+    function avatar(c) {
+      return '<span class="av" style="--c:' + (c.color || 'var(--kraft)') + '">' + (c.avatar ? '<img src="' + c.avatar + '" alt="" width="30" height="30">' : esc(c.name.charAt(0))) + '</span>';
+    }
+    function cmtHTML(c, text) {
+      return avatar(c) + '<p style="margin:0"><b>' + esc(c.name) + '</b>' + (text != null ? esc(text) : both(c)) + '</p>';
+    }
+    var list = document.getElementById('post-cmts');
+    function addCmt(html, cls) { var li = document.createElement('li'); li.className = 'cmt' + (cls ? ' ' + cls : ''); li.innerHTML = html; list.appendChild(li); return li; }
+    function typing(c) { return addCmt(avatar(c) + '<span class="typing" aria-label="typing"><i></i><i></i><i></i></span>'); }
+
+    fetch('assets/now.json?t=' + Date.now()).then(function (r) { return r.json(); }).then(function (data) {
+      var w = ago(data.updated);
+      document.getElementById('now-status').innerHTML = esc(data.status.emoji) + ' ' + both(data.status);
+      document.getElementById('now-when').innerHTML = both({ en: 'Updated ' + w.en, zh: w.zh + '更新' });
+      document.getElementById('now-log').innerHTML = data.log.map(function (it) {
+        return '<li><time datetime="' + it.date + '">' + both(ago(it.date)) + '</time><span>' + both(it) + '</span></li>';
+      }).join('');
+
+      var p = data.post, a = p.art || {};
+      document.getElementById('post-when').innerHTML = both(ago(p.date));
+      var art = document.getElementById('post-art');
+      art.style.background = a.bg || 'var(--sun)';
+      art.innerHTML = (a.image ? '<img src="' + a.image + '" alt="" style="width:100%;height:100%;object-fit:cover;animation:none">' : '<img src="' + a.mascot + '" alt="">') + (a.en ? '<div class="lbl">' + both(a) + '</div>' : '');
+      document.getElementById('post-cap').innerHTML = '<b>chrissu</b>' + both(p);
+
+      var heart = document.getElementById('post-heart'), likes = document.getElementById('post-likes');
+      var bots = p.comments.length;
+      function renderLikes() {
+        var on = heart.getAttribute('aria-pressed') === 'true';
+        likes.innerHTML = on ? both({ en: 'You and ' + bots + ' friends like this', zh: '你和 ' + bots + ' 位朋友說讚' }) : both({ en: bots + ' likes', zh: bots + ' 個讚' });
+      }
+      function like(on) {
+        heart.setAttribute('aria-pressed', on ? 'true' : 'false'); renderLikes();
+        if (on && !reduce) { var b = document.createElement('span'); b.className = 'burst'; b.textContent = '❤️'; art.appendChild(b); setTimeout(function () { b.remove(); }, 900); }
+      }
+      renderLikes();
+      heart.addEventListener('click', function () { like(heart.getAttribute('aria-pressed') !== 'true'); });
+      art.addEventListener('dblclick', function () { like(true); });
+
+      /* Comments arrive one by one once the post is on screen */
+      var started = false;
+      function play() {
+        if (started) return; started = true;
+        if (reduce) { p.comments.forEach(function (c) { addCmt(cmtHTML(c)); }); return; }
+        var i = 0;
+        (function next() {
+          if (i >= p.comments.length) return;
+          var c = p.comments[i++], t = typing(c);
+          setTimeout(function () { t.innerHTML = cmtHTML(c); setTimeout(next, 700 + Math.random() * 900); }, 900 + Math.random() * 700);
+        })();
+      }
+      if ('IntersectionObserver' in window) {
+        var o = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { o.disconnect(); play(); } }, { threshold: 0.35 });
+        o.observe(document.getElementById('now-post'));
+      } else play();
+
+      /* Visitor comments get a reply from a virtual friend */
+      var replies = {
+        zh: { hi: ['嗨嗨！歡迎來玩 👋', '哇有新朋友！你好你好 ✨'], praise: ['對吧！我也這樣覺得 🥹', '你很有眼光欸 ✨', '被你誇到開心轉圈 💫'], ask: ['好問題！問小仔本人最快，聯絡方式在最下面 👇', '這題我也想知道 🤔 直接傳訊息給他吧！'], get: ['App Store 搜「曬日子」就有，我在裡面等你 🫧'], any: ['哈哈哈這句我要截圖 📸', '收到！小仔看到一定很開心', '你的留言讓今天變好了一點 ☀️', '先幫你按個讚 ❤️', '我記住你了，下次再來玩 😆'] },
+        en: { hi: ['Hiii! Welcome in 👋', 'Ooh, a new friend! Hello hello ✨'], praise: ['Right?! I think so too 🥹', 'You have great taste ✨', 'Doing a happy little spin 💫'], ask: ['Good question! Chris answers fastest. Contact info is at the bottom 👇', 'I want to know too 🤔 Send him a message!'], get: ['Search "曬日子" on the App Store. I\'ll be waiting in there 🫧'], any: ['Haha, screenshotting this 📸', 'Got it! Chris is going to love this', 'Your comment just made today a little better ☀️', 'Liked it for you ❤️', 'I\'ll remember you. Come back soon 😆'] }
+      };
+      function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+      function kind(s) {
+        s = s.toLowerCase();
+        if (/下載|哪裡|載|download|where|get it|app store/.test(s)) return 'get';
+        if (/[?？]|怎麼|為什麼|嗎|how|why|what/.test(s)) return 'ask';
+        if (/讚|棒|好看|厲害|可愛|喜歡|愛|好笑|酷|nice|cool|love|great|cute|awesome|amazing|wow/.test(s)) return 'praise';
+        if (/^(hi|hello|hey|嗨|哈囉|你好|安安)/.test(s)) return 'hi';
+        return 'any';
+      }
+      var form = document.getElementById('say-form'), input = document.getElementById('say-in'), btn = form.querySelector('button');
+      function ph() { input.placeholder = lang() === 'zh' ? '留個言，看誰會回你…' : 'Leave a comment, see who replies…'; input.setAttribute('aria-label', input.placeholder); }
+      ph(); toggle.addEventListener('click', ph);
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var text = input.value.trim(); if (!text) return;
+        addCmt(cmtHTML({ name: lang() === 'zh' ? '你' : 'you', color: 'var(--sun)' }, text), 'mine');
+        input.value = ''; btn.disabled = true;
+        var friend = p.comments[Math.floor(Math.random() * p.comments.length)];
+        var t = typing(friend);
+        setTimeout(function () { t.innerHTML = cmtHTML(friend, pick(replies[lang()][kind(text)])); btn.disabled = false; }, reduce ? 300 : 1100 + Math.random() * 900);
+      });
+    }).catch(function () { document.getElementById('now-post').hidden = true; });
+  })();
 
   /* Copy email */
   document.querySelectorAll('[data-copy]').forEach(function (btn) {
